@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --primary: #fe2c55;
+    }
+    html {
+        font-size: 62.5%;
+    }
+    body {
+        line-height: 1.5;
+        font-size: 1.6rem;
+        text-rendering: optimizeSpeed;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    @font-face {
+        font-family: 'TikTokDisplay';
+        src: url('../public/fonts/TikTokDisplay-Regular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TikTokText';
+        src: url('../public/fonts/TikTokText-Regular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+}
