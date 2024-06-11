@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --primary: #fe2c55;
-    }
     html {
         font-size: 62.5%;
     }
@@ -16,19 +13,32 @@
     }
 
     * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
     }
 
     @font-face {
-        font-family: 'TikTokDisplay';
-        src: url('../public/fonts/TikTokDisplay-Regular.otf') format('opentype');
-        font-weight: normal;
+        font-family: 'TikTokText-Bold';
+        src: url('../public/fonts/TikTokText-Bold.otf') format('opentype');
+        font-weight: bold;
         font-style: normal;
     }
     @font-face {
-        font-family: 'TikTokText';
+        font-family: 'TikTokText-Regular';
         src: url('../public/fonts/TikTokText-Regular.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }
+    [type='search']::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        background-image: url('./assets/svgs/cancel-search.svg');
+        background-size: 17px 17px;
+        height: 17px;
+        width: 17px;
+        cursor: pointer;
+        position: relative;
+        right: 4px;
+    }
+    
 }

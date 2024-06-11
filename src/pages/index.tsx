@@ -1,0 +1,10 @@
+export {default as Home} from './Home';
+export {default as Foryou} from './Foryou';
+export {default as Upload} from './Upload';
+export {default as Following} from './Following';
+export {default as Friends} from './Friends';
+export {default as Explore} from './Explore';
+export {default as Live} from './Live';
+export {default as NotFound} from './NotFound';
+export {default as Profile} from './Profile';
+export {default as Messages} from './Messages';

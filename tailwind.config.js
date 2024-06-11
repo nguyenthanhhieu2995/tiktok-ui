@@ -1,14 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./src/**/*.{html,tsx}"],
-  theme: {
-    extend: {
-    },
-    fontFamily: {
-      'sans': ['TikTokText', 'sans-serif'],
-      'display': ['TikTokDisplay','sans-serif'],
-    }
-  },
-  plugins: [],
-}
 
+const plugin = require('tailwindcss/plugin');
+module.exports = {
+    content: ['./src/**/*.{html,tsx}'],
+    theme: {
+        extend: {},
+        fontFamily: {
+            sans: ['TikTokText-Bold', 'sans-serif'],
+            display: ['TikTokText-Regular', 'sans-serif'],
+        },
+    },
+    variants: {
+        fill: ['hover', 'focus'],
+    },
+    plugins: [
+        plugin(function ({ addVariant }) {
+            addVariant('children', '&>*');
+        }),
+    ],
+};

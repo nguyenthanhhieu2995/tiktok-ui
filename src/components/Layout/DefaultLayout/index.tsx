@@ -1,15 +1,15 @@
-import { PropsWithChildren } from 'react';
 import Header from '~/components/Layout/components/Header';
 import Sidebar from './Sidebar';
+import { Outlet } from 'react-router-dom';
 
-function DefaultLayout({children}: PropsWithChildren) {
+function DefaultLayout() {
     return (
-        <div>
+        <div className="flex flex-col items-center">
             <Header />
-            <div className="container">
+            <div className="w-full flex flex-row pt-[60px]">
                 <Sidebar />
-                <div className="content">
-                    {children}
+                <div className="flex-1">
+                    <Outlet />
                 </div>
             </div>
         </div>

@@ -1,34 +1,48 @@
-import { HeaderOnly } from '~/components/Layout';
+import { DefaultLayout } from '~/components/Layout';
 
-import Home from '~/pages/Home';
-import Following from '~/pages/Following';
-import Profile from '~/pages/Profile';
-import NotFound from '~/pages/NotFound';
-import Upload from '~/pages/Upload';
+import { Foryou, Friends, Following, Upload, NotFound, Live, Profile, Messages } from '~/pages';
 
 const publicRoutes = [
     {
         path: '/',
-        component: Home,
-    },
-    
-    {
-        path: '/following',
-        component: Following,
-    },
-    {
-        path:'/profile',
-        component: Profile,
+        element: <DefaultLayout />,
+        errorElement: <NotFound />,
+        children: [
+            {
+                index: true,
+                element: <Foryou />,
+            },
+            {
+                path: '/following',
+                element: <Following />,
+            },
+            {
+                path:'/friends',
+                element:<Friends/>
+            },
+            {
+                path:'/explore',
+                element:<Friends/>
+            },
+            {
+                path:'/live',
+                element:<Live/>
+            },
+            {
+                path:'/profile',
+                element:<Profile/>
+            }
+        ],
     },
     {
         path: '/upload',
-        component: Upload,
-        layout : HeaderOnly,
+        element: <Upload />,
     },
     {
-        path: '*',
-        component: NotFound,
+        path: '/messages',
+        element: <Messages/>,
     }
+    
 ];
 
 export { publicRoutes };
