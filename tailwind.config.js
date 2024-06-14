@@ -7,7 +7,7 @@ module.exports = {
         extend: {},
         fontFamily: {
             sans: ['TikTokText-Bold', 'sans-serif'],
-            display: ['TikTokText-Regular', 'sans-serif'],
+            display: ['TikTokText-Medium', 'sans-serif'],
         },
     },
     variants: {

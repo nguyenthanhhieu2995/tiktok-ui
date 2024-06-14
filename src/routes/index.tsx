@@ -1,6 +1,6 @@
 import { DefaultLayout } from '~/components/Layout';
 
-import { Foryou, Friends, Following, Upload, NotFound, Live, Profile, Messages } from '~/pages';
+import { Foryou, Friends, Following, Upload, NotFound, Live, Profile, Messages, Explore } from '~/pages';
 
 const publicRoutes = [
     {
@@ -17,21 +17,21 @@ const publicRoutes = [
                 element: <Following />,
             },
             {
-                path:'/friends',
-                element:<Friends/>
+                path: '/friends',
+                element: <Friends />,
             },
             {
-                path:'/explore',
-                element:<Friends/>
+                path: '/explore',
+                element: <Explore />,
             },
             {
-                path:'/live',
-                element:<Live/>
+                path: '/live',
+                element: <Live />,
             },
             {
-                path:'/profile',
-                element:<Profile/>
-            }
+                path: '/profile',
+                element: <Profile />,
+            },
         ],
     },
     {
@@ -40,9 +40,8 @@ const publicRoutes = [
     },
     {
         path: '/messages',
-        element: <Messages/>,
-    }
-    
+        element: <Messages />,
+    },
 ];
 
 export { publicRoutes };
