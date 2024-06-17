@@ -6,11 +6,12 @@ type ButtonProps = {
     style?: string;
     target?: string;
     disabled?: boolean;
+    noClassName?: boolean;
     children?: React.ReactNode;
     onClick?: () => void;
 };
 
-function Button({ to, href, style, disabled, children, onClick, ...passProps }: ButtonProps) {
+function Button({ to, href, style, disabled, noClassName, children, onClick, ...passProps }: ButtonProps) {
     let Comp: any = 'button';
     const props = {
         onClick,
@@ -32,10 +33,9 @@ function Button({ to, href, style, disabled, children, onClick, ...passProps }: 
 
     return (
         <Comp
-            d
             className={cn(
-                'border rounded-lg min-h-[36px] min-w-[100px] relative flex justify-center items-center cursor-pointer px-4 py-[8px] ml-4 leading-5',
-                style ? style : 'text-button ', disabled ? 'pointer-events-none opacity-70 select-none' : ''
+                noClassName ? '' : 'rounded-lg min-h-[36px] min-w-[100px] relative flex justify-center items-center cursor-pointer px-4 py-[8px] ml-6 leading-5',
+                style ? style : 'text-button', disabled ? 'pointer-events-none opacity-70 select-none' : ''
             )}
             {...props}
         >

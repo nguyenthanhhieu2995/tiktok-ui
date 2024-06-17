@@ -6,7 +6,7 @@ module.exports = {
     theme: {
         extend: {},
         fontFamily: {
-            sans: ['TikTokText-Bold', 'sans-serif'],
+            sans: ['TikTokText-Bold', 'sans-serif', ],
             display: ['TikTokText-Medium', 'sans-serif'],
         },
     },

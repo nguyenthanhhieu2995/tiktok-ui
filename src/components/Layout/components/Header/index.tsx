@@ -1,21 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Button from '~/components/Button';
 
-import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 import Logo from '~/assets/svgs/logo.svg?react';
-import { Messages, Search, Upload, Inbox, Spinner } from '~/assets/svgs';
-import avatar from '~/assets/images/avatar.jpeg';
-import { messi, ronaldo, klopp, sontung } from '~/assets/images/avatarSearch';
+import { Search, Upload, Spinner, Ellipsis } from '~/assets/svgs';
+import DropDownSearch from '~/components/Poper/DropDownSearch';
+import {PoperHeaderMoreMenu } from '~/components/Poper';
 
 function Header() {
-    const [searchResult, setSearchResult] = useState<any>([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 3000);
-    }, []);
-
     return (
         <header className=" bg-white border-gray-200 border-b-2 h-[60px] mx-auto px-8 w-full flex flex-row justify-between items-center fixed">
             <div className="min-w-[300px]">
@@ -48,33 +38,26 @@ function Header() {
                         </button>
                     </form>
                     {/* {dropdown search} */}
-                    <div
-                        className={`${
-                            searchResult.length > 0
-                                ? 'block w-full absolute z-50 rounded-xl mt-2 pt-2 min-h-52 max-h-[calc(min(100vh-156px,734px))] overflow-x-hidden overflow-y-auto [box-shadow:rgba(0,_0,_0,_0.12)_0px_2px_12px]'
-                                : 'hidden'
-                        }`}
-                    >
-                        <p className="text-gray-500 px-3 py-4 font-display text-2xl">Accounts</p>
-                        <AccountItem image={messi} name={'Messi'} username={'@messi'} />
-                        <AccountItem image={ronaldo} name={'Ronaldo'} username={'@ronaldo'} />
-                        <AccountItem image={klopp} name={'Klopp'} username={'@klopp'} />
-                        <AccountItem image={sontung} name={'Sontung'} username={'@sontung'} />
-                    </div>
+                    <DropDownSearch />
                 </div>
             </div>
-
-            {/* Action */}
-            <div className="flex flex-row">
-                <Link to='/upload'>
-                    <Button style='text-button'>
-                        <Upload className="size-[20px] mr-2 ml-3" />
-                        Upload
-                    </Button>
-                </Link>
-                <Button style="primary-button">
-                    Login
+            {/* Action header */}
+            <div className="flex flex-row mt-1">
+                <Button style="text-button px-6" to="/upload">
+                    <Upload className="size-[20px] mr-2 ml-3" />
+                    Upload
                 </Button>
+
+                <Button style="primary-button">Login</Button>
+                {/* Header Poper Menu */}
+                <PoperHeaderMoreMenu >
+                    <div>
+                        <Button style="border-none min-w-[32px] py-0">
+                            <Ellipsis className="rotate-90 size-[20px]" />
+                        </Button>
+                    </div>
+                </PoperHeaderMoreMenu>
+
                 {/* 
                 <div className="flex items-center space-x-8">
                     <Link to="/messages">

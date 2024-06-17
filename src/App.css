@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.primary-button {
-    @apply text-white bg-[#fe2c55] ;
-}
-.primary-button:hover {
-    @apply bg-[#ef2950] text-white;
-}
-.outline-button {
-    @apply border border-[#fe2c55] text-[#fe2c55];
-}
-.outline-button:hover {
-    @apply bg-[#fe2c550f] text-[#fe2c55];
-}
-.text-button {
-    @apply font-display rounded-none bg-white;
-}
-.text-button:hover {
-    @apply bg-slate-50;
-}
 @layer base {
     html {
         font-size: 62.5%;
@@ -78,4 +60,31 @@
     h2 {
         @apply text-2xl;
     }
+}
+@layer components {
+    #arrow {
+        position: absolute;
+    }
+    #tooltip[data-placement^='bottom'] > #arrow {
+        top: -12px;
+        right: 20px
+    }
+}
+.primary-button {
+    @apply text-white bg-[#fe2c55];
+}
+.primary-button:hover {
+    @apply bg-[#ef2950] text-white;
+}
+.outline-button {
+    @apply border border-[#fe2c55] text-[#fe2c55];
+}
+.outline-button:hover {
+    @apply bg-[#fe2c550f] text-[#fe2c55];
+}
+.text-button {
+    @apply font-display rounded-none bg-white border-[1px] border-gray-200;
+}
+.text-button:hover {
+    @apply bg-slate-50;
 }
