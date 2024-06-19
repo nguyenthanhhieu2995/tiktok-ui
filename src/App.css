@@ -1,3 +1,4 @@
+@import url('https://unpkg.com/tippy.js@6/dist/tippy.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,6 +42,12 @@
     @font-face {
         font-family: 'TikTokText-Medium';
         src: url('../public/fonts/TikTokText-Medium.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TikTokText-Regular';
+        src: url('../public/fonts/TikTokText-Regular.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }

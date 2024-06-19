@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { Outlet } from 'react-router-dom';
 import Header from '~/components/Layout/components/Header';
 
 function DefaultLayout({ children }: PropsWithChildren) {
@@ -6,7 +7,7 @@ function DefaultLayout({ children }: PropsWithChildren) {
         <div>
             <Header />
             <div className="container">
-                <div className="content">{children}</div>
+                <div className="content">{<Outlet />}</div>
             </div>
         </div>
     );

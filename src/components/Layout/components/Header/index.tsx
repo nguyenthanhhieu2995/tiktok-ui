@@ -1,11 +1,23 @@
+import { Link } from 'react-router-dom';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'
 
+import { useStore } from '~/store';
+import { actions } from '~/state';
+
+import avatar from '~/assets/images/avatar.jpeg';
 import Button from '~/components/Button';
 import Logo from '~/assets/svgs/logo.svg?react';
-import { Search, Upload, Spinner, Ellipsis } from '~/assets/svgs';
+import { Search, Upload, Spinner, Ellipsis, Messages, Inbox } from '~/assets/svgs';
 import DropDownSearch from '~/components/Poper/DropDownSearch';
-import {PoperHeaderMoreMenu } from '~/components/Poper';
+import { PoperHeaderMoreMenu } from '~/components/Poper';
 
 function Header() {
+    const [state, dispatch] = useStore();
+
+    const handleLogin = () => {
+        dispatch(actions.logIn());
+    };
     return (
         <header className=" bg-white border-gray-200 border-b-2 h-[60px] mx-auto px-8 w-full flex flex-row justify-between items-center fixed">
             <div className="min-w-[300px]">
@@ -42,34 +54,45 @@ function Header() {
                 </div>
             </div>
             {/* Action header */}
-            <div className="flex flex-row mt-1">
+
+            <div className="flex flex-row mt-1 ">
                 <Button style="text-button px-6" to="/upload">
                     <Upload className="size-[20px] mr-2 ml-3" />
                     Upload
                 </Button>
 
-                <Button style="primary-button">Login</Button>
-                {/* Header Poper Menu */}
-                <PoperHeaderMoreMenu >
-                    <div>
-                        <Button style="border-none min-w-[32px] py-0">
-                            <Ellipsis className="rotate-90 size-[20px]" />
+                {state.isLogin ? (
+                    <div className="flex items-center space-x-8 ml-16">
+                        <Tippy content="Messages" >
+                            <Link to="/messages">
+                                <Messages className="size-[26px]" />
+                            </Link>
+                        </Tippy>
+                        <Tippy content="Inbox" >
+                            <Link to="/inbox">
+                                <Inbox />
+                            </Link>
+                        </Tippy>
+                        <PoperHeaderMoreMenu isLogin={state.isLogin}>
+                            <div className="size-[32px]">
+                                <img className="rounded-full" src={avatar} alt="avatar" />
+                            </div>
+                        </PoperHeaderMoreMenu>
+                    </div>
+                ) : (
+                    <>
+                        <Button style="primary-button" onClick={() => handleLogin()}>
+                            Login
                         </Button>
-                    </div>
-                </PoperHeaderMoreMenu>
-
-                {/* 
-                <div className="flex items-center space-x-8">
-                    <Link to="/messages">
-                        <Messages className="size-[26px]" />
-                    </Link>
-                    <button>
-                        <Inbox />
-                    </button>
-                    <div className="size-[32px]">
-                        <img className="rounded-full" src={avatar} alt="avatar" />
-                    </div>
-                </div> */}
+                        <PoperHeaderMoreMenu isLogin={state.isLogin}>
+                            <div>
+                                <Button style="border-none min-w-[32px] py-0">
+                                    <Ellipsis className="rotate-90 size-[20px]" />
+                                </Button>
+                            </div>
+                        </PoperHeaderMoreMenu>
+                    </>
+                )}
             </div>
         </header>
     );

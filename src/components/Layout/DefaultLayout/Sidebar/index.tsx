@@ -1,92 +1,71 @@
-import { Home, Following, Friends, Explore, Live } from '~/assets/svgs';
+import { useStore } from '~/store';
+import { useLocation } from 'react-router-dom';
+
+import Button from '~/components/Button';
+import { cn } from '~/utils/cn';
+import { Home, Following, Friends, Explore, Live, Profile } from '~/assets/svgs';
 import avatar from '~/assets/images/avatar.jpeg';
-import { Link } from 'react-router-dom';
+
+const SIDE_BAR = [
+    {
+        icon: <Home />,
+        title: 'For You',
+        path: '/',
+    },
+    {
+        icon: <Following />,
+        title: 'Following',
+        path: '/following',
+    },
+    {
+        icon: <Friends />,
+        title: 'Friends',
+        path: '/friends',
+    },
+    {
+        icon: <Explore />,
+        title: 'Explore',
+        path: '/explore',
+    },
+    {
+        icon: <Live />,
+        title: 'Live',
+        path: '/live',
+    },
+    {
+        icon: <Profile />,
+        title: 'Profile',
+        path: '/profile',
+    },
+];
 
 function Sidebar() {
+    const [state] = useStore();
+    const location = useLocation();
     return (
-        <div className="relative h-screen min-w-[240px] pr-2">
-            <div className="top-[60px] min-w-[240px] pr-2  overflow-y-auto fixed z-50">
-                <div className='pl-5 pt-7 flex flex-col items-stretch'>
-                    <nav className='mb-2'>
+        <div className="relative h-screen md:min-w-[240px] min-w-[64px] pr-2">
+            <div className="top-[60px] h-full pr-2  overflow-y-auto fixed z-50 md:border-0 border-r-[2px] ">
+                <div className="pl-5 pt-7 flex flex-col items-stretch ">
+                    <nav className="mb-2">
                         <ul className=" space-y-2 font-medium">
-                            <li>
-                                <div>
-                                    <Link
-                                        to="/"
-                                        className="flex justify-start items-center p-2 text-gray-900 rounded hover:bg-gray-100 focus:text-rose-600 group"
-                                    >
-                                        <div>
-                                            <Home />
-                                        </div>
-                                        <span className="ml-2  ">For You</span>
-                                    </Link>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <Link
-                                        to="/following"
-                                        className=" flex justify-start items-center p-2 text-gray-900 rounded hover:bg-gray-100 focus:text-[#fe2c55] group"
-                                    >
-                                        <div>
-                                            <Following className="w-[32px] h-[32px] p-1.5" />
-                                        </div>
-                                        <span className="ml-2">Following</span>
-                                    </Link>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <Link
-                                        to="/friends"
-                                        className=" flex justify-start items-center p-2 text-gray-900 rounded hover:bg-gray-100 focus:text-[#fe2c55] group"
-                                    >
-                                        <div>
-                                            <Friends />
-                                        </div>
-                                        <span className="ml-2">Friends</span>
-                                    </Link>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <Link
-                                        to="/explore"
-                                        className=" flex justify-start items-center p-2 text-gray-900 rounded hover:bg-gray-100 focus:text-[#fe2c55] group"
-                                    >
-                                        <div>
-                                            <Explore className="w-[32px] h-[32px]" />
-                                        </div>
-                                        <span className="ml-2">Explore</span>
-                                    </Link>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <Link
-                                        to="/live"
-                                        className=" flex justify-start items-center p-2 text-gray-900 rounded hover:bg-gray-100 focus:text-[#fe2c55] group"
-                                    >
-                                        <div>
-                                            <Live />
-                                        </div>
-                                        <span className="ml-2">LIVE</span>
-                                    </Link>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <Link
-                                        to="/profile"
-                                        className=" flex justify-start items-center p-2 text-gray-900 rounded hover:bg-gray-100 focus:text-[#fe2c55] group"
+                            {SIDE_BAR.map((item) => (
+                                <li key={item.title} >
+                                    <Button
+                                        noClassName
+                                        to={item.path}
+                                        style={cn(" flex justify-start items-center p-2.5 text-gray-900 rounded hover:bg-gray-100 group", location.pathname === item.path ? 'text-[#fe2c55]' : '')}  
                                     >
                                         <div className="size-[32px]">
-                                            <img className="rounded-full" src={avatar} alt="avatar" />
+                                            {state.isLogin && item.title === 'Profile' ? (
+                                                <img className="rounded-full" src={avatar} alt="avatar" />
+                                            ) : (
+                                                item.icon
+                                            )}
                                         </div>
-                                        <span className="ml-2">Profile</span>
-                                    </Link>
-                                </div>
-                            </li>
+                                        <span className="ml-2 md:block hidden">{item.title}</span>
+                                    </Button>
+                                </li>
+                            ))}
                         </ul>
                     </nav>
                 </div>
@@ -96,3 +75,4 @@ function Sidebar() {
 }
 
 export default Sidebar;
+//focus:text-[#fe2c55]

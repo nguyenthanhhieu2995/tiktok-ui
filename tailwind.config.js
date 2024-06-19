@@ -8,6 +8,7 @@ module.exports = {
         fontFamily: {
             sans: ['TikTokText-Bold', 'sans-serif', ],
             display: ['TikTokText-Medium', 'sans-serif'],
+            light: ['TikTokText-Regular', 'sans-serif'],
         },
     },
     variants: {

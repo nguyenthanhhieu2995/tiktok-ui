@@ -1,6 +1,7 @@
-import { DefaultLayout } from '~/components/Layout';
+import { DefaultLayout, HeaderOnly } from '~/components/Layout';
 
-import { Foryou, Friends, Following, Upload, NotFound, Live, Profile, Messages, Explore } from '~/pages';
+import { Foryou, Friends, Following, Upload, NotFound, Live, Profile, Messages, Explore, Setting } from '~/pages';
+
 
 const publicRoutes = [
     {
@@ -41,6 +42,11 @@ const publicRoutes = [
     {
         path: '/messages',
         element: <Messages />,
+    },
+    {
+        path: '/',
+        element: <HeaderOnly />,
+        children: [{ path: '/setting', element: <Setting /> }],
     },
 ];
 

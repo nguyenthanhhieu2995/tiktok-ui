@@ -8,3 +8,4 @@ export {default as Live} from './Live';
 export {default as NotFound} from './NotFound';
 export {default as Profile} from './Profile';
 export {default as Messages} from './Messages';
+export {default as Setting} from './Setting';
