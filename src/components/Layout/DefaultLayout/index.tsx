@@ -6,7 +6,7 @@ function DefaultLayout() {
     return (
         <div className="flex flex-col items-center">
             <Header />
-            <div className="w-full flex flex-row pt-[60px]">
+            <div className="w-full flex flex-row pt-[60px] ">
                 <Sidebar />
                 <div className="flex-1">
                     <Outlet />

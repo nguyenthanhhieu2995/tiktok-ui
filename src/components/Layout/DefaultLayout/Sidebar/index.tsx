@@ -1,10 +1,11 @@
 import { useStore } from '~/store';
+import { actions } from '~/state';
 import { useLocation } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import { cn } from '~/utils/cn';
 import { Home, Following, Friends, Explore, Live, Profile } from '~/assets/svgs';
-import avatar from '~/assets/images/avatar.jpeg';
+import { avatar, effectHouse, effectHouseHover, earnCoin } from '~/assets/images';
 
 const SIDE_BAR = [
     {
@@ -29,7 +30,7 @@ const SIDE_BAR = [
     },
     {
         icon: <Live />,
-        title: 'Live',
+        title: 'LIVE',
         path: '/live',
     },
     {
@@ -40,20 +41,26 @@ const SIDE_BAR = [
 ];
 
 function Sidebar() {
-    const [state] = useStore();
+    const [state, dispatch] = useStore();
     const location = useLocation();
+    const handleLogin = () => {
+        dispatch(actions.logIn());
+    };
     return (
-        <div className="relative h-screen md:min-w-[240px] min-w-[64px] pr-2">
-            <div className="top-[60px] h-full pr-2  overflow-y-auto fixed z-50 md:border-0 border-r-[2px] ">
-                <div className="pl-5 pt-7 flex flex-col items-stretch ">
-                    <nav className="mb-2">
+        <div className="relative h-screen md:w-[240px] w-[64px] text-[18px] ">
+            <div className="top-[60px] max-w-[240px] h-full  pl-2 pt-5 overflow-y-auto fixed z-50 md:border-0 border-r-[1.5px] ">
+                <div className=" flex flex-col items-stretch space-y-2 children:ml-4  children:border-b-[0.5px]">
+                    <nav className="py-4">
                         <ul className=" space-y-2 font-medium">
                             {SIDE_BAR.map((item) => (
-                                <li key={item.title} >
+                                <li key={item.title}>
                                     <Button
-                                        noClassName
+                                        noDefaultStyle
                                         to={item.path}
-                                        style={cn(" flex justify-start items-center p-2.5 text-gray-900 rounded hover:bg-gray-100 group", location.pathname === item.path ? 'text-[#fe2c55]' : '')}  
+                                        style={cn(
+                                            ' flex justify-start items-center p-2 text-gray-900 rounded hover:bg-gray-100 group',
+                                            location.pathname === item.path ? 'text-[#fe2c55]' : '',
+                                        )}
                                     >
                                         <div className="size-[32px]">
                                             {state.isLogin && item.title === 'Profile' ? (
@@ -68,6 +75,97 @@ function Sidebar() {
                             ))}
                         </ul>
                     </nav>
+                    {state.isLogin ? (
+                        <div className="md:block hidden children:text-[14px] py-4 children:font-light children:tracking-wide space-y-4 children:my-4">
+                            <p className="text-gray-700">Following accounts</p>
+                            <p className="text-gray-400">Accounts you follow will appear here</p>
+                        </div>
+                    ) : (
+                        <div className="md:block hidden children:tracking-wide pb-10 pt-4 space-y-4 children:py-4">
+                            <p className="text-gray-400 font-light text-[16px]">
+                                Log in to follow creators, like videos, and view comments
+                            </p>
+                            <Button
+                                style="outline-button ml-0 min-w-[168px] min-h-[48px] w-[208px]"
+                                onClick={() => handleLogin()}
+                            >
+                                <p className="text-[18px] font-sans">Log in</p>
+                            </Button>
+                        </div>
+                    )}
+                    <div className="pt-4">
+                        <Button
+                            href="https://effecthouse.tiktok.com/download?lang=en&utm_campaign=ttweb_entrance_v1&utm_source=tiktok_webapp_main"
+                            target="_blank"
+                            noDefaultStyle
+                            style="md:block hidden border-0 w-[208px] pt-2"
+                        >
+                            <div className="relative flex items-center justify-center">
+                                <img className="" src={earnCoin} alt="earncoin" />
+                                <div className="absolute flex items-center justify-center text-start w-[141px] left-[50px]">
+                                    <div className="overflow-hidden max-h-[40px] w-full">
+                                        <p className="text-[#fff5c9] text-[13px]">
+                                            Create TikTok effects, get a reward
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </Button>
+                        <Button
+                            noDefaultStyle
+                            style="md:hidden block group"
+                            href="https://effecthouse.tiktok.com/download?lang=en&utm_campaign=ttweb_entrance_v1&utm_source=tiktok_webapp_main"
+                        >
+                            <div className="group-hover:hidden size-[32px]">
+                                <img src={effectHouse} alt="effectHouse" />
+                            </div>
+                            <div className="group-hover:block hidden size-[32px]">
+                                <img src={effectHouseHover} alt="effectHouseHover" />
+                            </div>
+                        </Button>
+                        <div className="md:block hidden my-8 text-[14px] text-gray-400 tracking-wide ">
+                            <h4>Company</h4>
+                            <div className="pb-4 flex justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-3 hover:children:underline leading-5">
+                                <a href="#">About</a>
+                                <a href="#">Newsroom</a>
+                                <a href="#">Contact</a>
+                                <a href="#">Careers</a>
+                            </div>
+                            <h4 >Program</h4>
+                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-4 hover:children:underline leading-5">
+                                <a href="#">Tiktok for Good</a>
+                                <a href="#">Advertise</a>
+                                <a href="#">Titok LIVE Creator Networks</a>
+                                <a href="#">Developers</a>
+                                <a href="#">Transaprency</a>
+                                <a href="#">Tiktok Rewards</a>
+                                <a href="#">Tiktok Embeds</a>
+                            </div>
+                            <h4 >Terms & Policies</h4>
+                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-4 hover:children:underline leading-5">
+                                <a href="#">Help</a>
+                                <a href="#">Sadety</a>
+                                <a href="#">Terms</a>
+                                <a href="#">Privacy Policy</a>
+                                <a href="#">Privacy Center</a>
+                                <a href="#">Creator Academy</a>
+                                <a href="#">Community Guidelines</a>
+                            </div>
+                            <h4 >Program</h4>
+                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-4 hover:children:underline leading-5">
+                                <a href="#">Dance</a>
+                                <a href="#">Arts</a>
+                                <a href="#">Food and Drinks</a>
+                                <a href="#">Tourism</a>
+                                <a href="#">Production and Manufacturing</a>
+                                <a href="#">Vehicles and Transportation</a>
+                                <a href="#">Relationship Tiktok Style</a>
+                                <a href="#">Athletics</a>
+                                <a href="#">Hobbies</a>
+                            </div>
+                            <span className='text-gray-400 text-[11px] font-light'>© 2024 TikTok</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

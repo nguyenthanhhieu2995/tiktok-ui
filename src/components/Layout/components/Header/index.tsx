@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'
+import 'tippy.js/dist/tippy.css';
 
 import { useStore } from '~/store';
 import { actions } from '~/state';
@@ -18,8 +18,11 @@ function Header() {
     const handleLogin = () => {
         dispatch(actions.logIn());
     };
+    const handleChangeInput = (e: any) => {
+        dispatch(actions.setSearchInput(e));
+    };
     return (
-        <header className=" bg-white border-gray-200 border-b-2 h-[60px] mx-auto px-8 w-full flex flex-row justify-between items-center fixed">
+        <header className=" bg-white border-gray-200 border-b-[1.5px] h-[60px] mx-auto px-8 w-full flex flex-row justify-between items-center fixed">
             <div className="min-w-[300px]">
                 <a href="#">
                     <Logo />
@@ -34,6 +37,8 @@ function Header() {
                         className="relative font-display flex flex-row items-center p-4 bg-gray-100 rounded-full border border-gray-50 pointer-events-none hover:border-gray-300 group "
                     >
                         <input
+                            value={state.inputSearch}
+                            onChange={(e) => handleChangeInput(e.target.value)}
                             placeholder="Search"
                             type="search"
                             className=" bg-transparent outline-none focus:outline-none px-3 w-full caret-rose-600 text-gray-700 pointer-events-auto peer placeholder-gray-500"
@@ -49,8 +54,8 @@ function Header() {
                             </div>
                         </button>
                     </form>
-                    {/* {dropdown search} */}
-                    <DropDownSearch />
+                    {/* {dropdown search} add logic here */}
+                    {state.inputSearch.length > 0 && <DropDownSearch />}
                 </div>
             </div>
             {/* Action header */}
@@ -63,12 +68,12 @@ function Header() {
 
                 {state.isLogin ? (
                     <div className="flex items-center space-x-8 ml-16">
-                        <Tippy content="Messages" >
+                        <Tippy content="Messages">
                             <Link to="/messages">
                                 <Messages className="size-[26px]" />
                             </Link>
                         </Tippy>
-                        <Tippy content="Inbox" >
+                        <Tippy content="Inbox">
                             <Link to="/inbox">
                                 <Inbox />
                             </Link>

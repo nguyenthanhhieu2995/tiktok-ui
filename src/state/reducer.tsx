@@ -1,10 +1,11 @@
-import { LOG_IN, LOG_OUT } from './constant';
+import { LOG_IN, LOG_OUT,SET_SEARCH_INPUT } from './constant';
 
 const initState = {
     isLogin: false,
+    inputSearch: '',
 };
 
-function reducer(state = initState, action: any) {
+function reducer(state = initState, action: { type: string; payload: any }) {
     switch (action.type) {
         case LOG_IN:
             return {
@@ -15,6 +16,11 @@ function reducer(state = initState, action: any) {
             return {
                 ...state,
                 isLogin: false,
+            }
+        case SET_SEARCH_INPUT:
+            return {
+                ...state,
+                inputSearch: action.payload
             }
         default:
             throw new Error('unknown action');

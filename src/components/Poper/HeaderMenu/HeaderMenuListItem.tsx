@@ -10,7 +10,7 @@ function HeaderMenuListItem({ data, isSubMenu, onClick }: MoreMenuListItemProps)
     return (
         <Button
             to={data.to ? data.to : ''}
-            noClassName
+            noDefaultStyle
             style={cn('flex flex-row items-center w-full gap-4 py-0 h-[44px]', isSubMenu ? 'h-[38px]' : '')}
             onClick={onClick}
         >
