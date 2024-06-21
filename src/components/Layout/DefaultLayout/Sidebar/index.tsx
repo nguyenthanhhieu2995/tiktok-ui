@@ -48,10 +48,10 @@ function Sidebar() {
     };
     return (
         <div className="relative h-screen md:w-[240px] w-[64px] text-[18px] ">
-            <div className="top-[60px] max-w-[240px] h-full  pl-2 pt-5 overflow-y-auto fixed z-50 md:border-0 border-r-[1.5px] ">
+            <div id='sidebar' className="top-[60px] max-w-[240px] h-full  pl-2 pt-5 overflow-y-auto fixed z-10 md:border-0 border-r-[1.5px] ">
                 <div className=" flex flex-col items-stretch space-y-2 children:ml-4  children:border-b-[0.5px]">
                     <nav className="py-4">
-                        <ul className=" space-y-2 font-medium">
+                        <ul className=" space-y-2 font-bold">
                             {SIDE_BAR.map((item) => (
                                 <li key={item.title}>
                                     <Button
@@ -76,13 +76,13 @@ function Sidebar() {
                         </ul>
                     </nav>
                     {state.isLogin ? (
-                        <div className="md:block hidden children:text-[14px] py-4 children:font-light children:tracking-wide space-y-4 children:my-4">
+                        <div className="md:block hidden children:text-[14px] py-4  children:tracking-wide space-y-4 children:my-4">
                             <p className="text-gray-700">Following accounts</p>
                             <p className="text-gray-400">Accounts you follow will appear here</p>
                         </div>
                     ) : (
                         <div className="md:block hidden children:tracking-wide pb-10 pt-4 space-y-4 children:py-4">
-                            <p className="text-gray-400 font-light text-[16px]">
+                            <p className="text-gray-400 text-[16px]">
                                 Log in to follow creators, like videos, and view comments
                             </p>
                             <Button
@@ -125,14 +125,14 @@ function Sidebar() {
                         </Button>
                         <div className="md:block hidden my-8 text-[14px] text-gray-400 tracking-wide ">
                             <h4>Company</h4>
-                            <div className="pb-4 flex justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-3 hover:children:underline leading-5">
+                            <div className="pb-4 flex justify-start items-center text-[11px] children:text-gray-400  gap-3 hover:children:underline leading-5">
                                 <a href="#">About</a>
                                 <a href="#">Newsroom</a>
                                 <a href="#">Contact</a>
                                 <a href="#">Careers</a>
                             </div>
                             <h4 >Program</h4>
-                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-4 hover:children:underline leading-5">
+                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400  gap-4 hover:children:underline leading-5">
                                 <a href="#">Tiktok for Good</a>
                                 <a href="#">Advertise</a>
                                 <a href="#">Titok LIVE Creator Networks</a>
@@ -142,7 +142,7 @@ function Sidebar() {
                                 <a href="#">Tiktok Embeds</a>
                             </div>
                             <h4 >Terms & Policies</h4>
-                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-4 hover:children:underline leading-5">
+                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400  gap-4 hover:children:underline leading-5">
                                 <a href="#">Help</a>
                                 <a href="#">Sadety</a>
                                 <a href="#">Terms</a>
@@ -152,7 +152,7 @@ function Sidebar() {
                                 <a href="#">Community Guidelines</a>
                             </div>
                             <h4 >Program</h4>
-                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400 children:font-light gap-4 hover:children:underline leading-5">
+                            <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400  gap-4 hover:children:underline leading-5">
                                 <a href="#">Dance</a>
                                 <a href="#">Arts</a>
                                 <a href="#">Food and Drinks</a>
@@ -163,7 +163,7 @@ function Sidebar() {
                                 <a href="#">Athletics</a>
                                 <a href="#">Hobbies</a>
                             </div>
-                            <span className='text-gray-400 text-[11px] font-light'>© 2024 TikTok</span>
+                            <span className='text-gray-400 text-[11px] font-sans'>© 2024 TikTok</span>
                         </div>
                     </div>
                 </div>

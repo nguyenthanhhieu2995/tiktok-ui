@@ -2,22 +2,20 @@ import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-import { useStore } from '~/store';
+import { useStore, useModal } from '~/store';
 import { actions } from '~/state';
-
 import avatar from '~/assets/images/avatar.jpeg';
 import Button from '~/components/Button';
 import Logo from '~/assets/svgs/logo.svg?react';
 import { Search, Upload, Spinner, Ellipsis, Messages, Inbox } from '~/assets/svgs';
 import DropDownSearch from '~/components/Poper/DropDownSearch';
 import { PoperHeaderMoreMenu } from '~/components/Poper';
+import Login from '~/components/Modal/Login';
 
 function Header() {
     const [state, dispatch] = useStore();
+    const { isShowing, showModal, hideModal } = useModal();
 
-    const handleLogin = () => {
-        dispatch(actions.logIn());
-    };
     const handleChangeInput = (e: any) => {
         dispatch(actions.setSearchInput(e));
     };
@@ -86,7 +84,7 @@ function Header() {
                     </div>
                 ) : (
                     <>
-                        <Button style="primary-button" onClick={() => handleLogin()}>
+                        <Button style="primary-button" onClick={() => showModal()}>
                             Login
                         </Button>
                         <PoperHeaderMoreMenu isLogin={state.isLogin}>
@@ -99,6 +97,7 @@ function Header() {
                     </>
                 )}
             </div>
+            <Login isShowing={isShowing} hideModal={hideModal} />
         </header>
     );
 }

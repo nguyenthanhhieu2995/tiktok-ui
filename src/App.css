@@ -12,9 +12,12 @@
         font-size: 1.6rem;
         text-rendering: optimizeSpeed;
     }
-
-    h1, h2, h3, h4 {
-        line-height: 2.5;
+    h1 {
+        @apply text-5xl leading-[1.7];
+    }
+    h4 {
+        @apply leading-loose;
+        font-family: 'TikTokDisplay-Semibold';
     }
 
     * {
@@ -35,22 +38,26 @@
         background-color: #e9e9e9;
         border-radius: 100px;
     }
-    
+
+    @font-face {
+        font-family: 'TikTokDisplay-Semibold';
+        src: url('../public/fonts/TikTokDisplayFont-Semibold.woff2') format('woff2');
+    }
     @font-face {
         font-family: 'TikTokDisplay-Bold';
-        src: url('../public/fonts/TikTokDisplay-Bold.otf') format('opentype');
+        src: url('../public/fonts/TikTokDisplayFont-Bold.woff2') format('woff2');
     }
     @font-face {
-        font-family: 'TikTokText-Bold';
-        src: url('../public/fonts/TikTokText-Bold.otf') format('opentype');
+        font-family: 'TikTokFont-Semibold';
+        src: url('../public/fonts/TikTokFont-Semibold.woff2') format('woff2');
     }
     @font-face {
-        font-family: 'TikTokText-Medium';
-        src: url('../public/fonts/TikTokText-Medium.otf') format('opentype');
+        font-family: 'TikTokFont-Regular';
+        src: url('../public/fonts/TikTokFont-Regular.woff2') format('woff2');
     }
     @font-face {
-        font-family: 'TikTokText-Regular';
-        src: url('../public/fonts/TikTokText-Regular.otf') format('opentype');
+        font-family: 'TikTokFont-Bold';
+        src: url('../public/fonts/TikTokFont-Bold.woff2') format('woff2');
     }
     [type='search']::-webkit-search-cancel-button {
         -webkit-appearance: none;
@@ -61,6 +68,9 @@
         cursor: pointer;
         position: relative;
         right: 4px;
+    }
+    #sidebar::-webkit-scrollbar {
+        display: none;
     }
 }
 @layer components {
@@ -73,19 +83,19 @@
     }
 }
 .primary-button {
-    @apply text-white bg-[#fe2c55];
+    @apply text-white bg-[#fe2c55] font-displaybold;
 }
 .primary-button:hover {
     @apply bg-[#ef2950] text-white;
 }
 .outline-button {
-    @apply border border-[#fe2c55] text-[#fe2c55];
+    @apply border border-[#fe2c55] text-[#fe2c55] font-bold;
 }
 .outline-button:hover {
     @apply bg-[#fe2c550f] text-[#fe2c55];
 }
 .text-button {
-    @apply font-display rounded-none bg-white border-[1px] border-gray-200;
+    @apply font-sans rounded-none bg-white border-[1px] border-gray-200;
 }
 .text-button:hover {
     @apply bg-slate-50;

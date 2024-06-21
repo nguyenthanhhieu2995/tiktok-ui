@@ -18,7 +18,6 @@ import { ToggleButton } from '~/components/Poper';
 import HeaderMenuListItem from './HeaderMenuListItem';
 import HeaderTitle from './HeaderTitle';
 import Wrapper from '../Wrapper';
-
 import ModalKeyBoardShorcuts from '~/components/Modal/ModalKeyBoardShorcuts';
 import { useModal } from '~/store';
 const MENU_ITEMS = [
@@ -34,7 +33,7 @@ const MENU_ITEMS = [
     },
     {
         icon: <LiveCreatorHub />,
-        title: 'Live Creator Hub',
+        title: 'LIVE Creator Hub',
         to: '/live-creator-hub',
     },
     {
@@ -149,7 +148,6 @@ function PoperHeaderMoreMenu({ isLogin, children }: PoperHeaderMoreMenuProps) {
     return (
         <>
             <HeadlessTippy
-                
                 delay={[0, 500]}
                 interactive
                 offset={[10, 0]}
