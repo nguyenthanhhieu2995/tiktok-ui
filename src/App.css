@@ -73,15 +73,7 @@
         display: none;
     }
 }
-@layer components {
-    #arrow {
-        position: absolute;
-    }
-    #tooltip[data-placement^='bottom'] > #arrow {
-        top: -12px;
-        right: 20px;
-    }
-}
+
 .primary-button {
     @apply text-white bg-[#fe2c55] font-displaybold;
 }

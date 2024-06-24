@@ -1,11 +1,14 @@
-import { useStore } from '~/store';
-import { actions } from '~/state';
 import { useLocation } from 'react-router-dom';
 
+import { useStore } from '~/store';
+import { actions } from '~/state';
+import { useModal } from '~/store';
+import Login from '~/components/Modal/Login';
 import Button from '~/components/Button';
+import Image from '~/components/Image';
 import { cn } from '~/utils/cn';
 import { Home, Following, Friends, Explore, Live, Profile } from '~/assets/svgs';
-import { avatar, effectHouse, effectHouseHover, earnCoin } from '~/assets/images';
+import  * as images from '~/assets/images';
 
 const SIDE_BAR = [
     {
@@ -41,14 +44,15 @@ const SIDE_BAR = [
 ];
 
 function Sidebar() {
+    const { isShowing, showModal, hideModal } = useModal();
     const [state, dispatch] = useStore();
     const location = useLocation();
-    const handleLogin = () => {
-        dispatch(actions.logIn());
-    };
     return (
         <div className="relative h-screen md:w-[240px] w-[64px] text-[18px] ">
-            <div id='sidebar' className="top-[60px] max-w-[240px] h-full  pl-2 pt-5 overflow-y-auto fixed z-10 md:border-0 border-r-[1.5px] ">
+            <div
+                id="sidebar"
+                className="top-[60px] max-w-[240px] h-full  pl-2 pt-5 overflow-y-auto fixed z-10 md:border-0 border-r-[1.5px] "
+            >
                 <div className=" flex flex-col items-stretch space-y-2 children:ml-4  children:border-b-[0.5px]">
                     <nav className="py-4">
                         <ul className=" space-y-2 font-bold">
@@ -64,7 +68,7 @@ function Sidebar() {
                                     >
                                         <div className="size-[32px]">
                                             {state.isLogin && item.title === 'Profile' ? (
-                                                <img className="rounded-full" src={avatar} alt="avatar" />
+                                                <img className="rounded-full" src={images.avatar} alt="avatar" />
                                             ) : (
                                                 item.icon
                                             )}
@@ -87,7 +91,7 @@ function Sidebar() {
                             </p>
                             <Button
                                 style="outline-button ml-0 min-w-[168px] min-h-[48px] w-[208px]"
-                                onClick={() => handleLogin()}
+                                onClick={() => showModal()}
                             >
                                 <p className="text-[18px] font-sans">Log in</p>
                             </Button>
@@ -101,7 +105,7 @@ function Sidebar() {
                             style="md:block hidden border-0 w-[208px] pt-2"
                         >
                             <div className="relative flex items-center justify-center">
-                                <img className="" src={earnCoin} alt="earncoin" />
+                                <Image className="" src={images.earnCoin} alt="earncoin" />
                                 <div className="absolute flex items-center justify-center text-start w-[141px] left-[50px]">
                                     <div className="overflow-hidden max-h-[40px] w-full">
                                         <p className="text-[#fff5c9] text-[13px]">
@@ -117,10 +121,10 @@ function Sidebar() {
                             href="https://effecthouse.tiktok.com/download?lang=en&utm_campaign=ttweb_entrance_v1&utm_source=tiktok_webapp_main"
                         >
                             <div className="group-hover:hidden size-[32px]">
-                                <img src={effectHouse} alt="effectHouse" />
+                                <Image src={images.effectHouse} alt="effectHouse" />
                             </div>
                             <div className="group-hover:block hidden size-[32px]">
-                                <img src={effectHouseHover} alt="effectHouseHover" />
+                                <Image src={images.effectHouseHover} alt="effectHouseHover" />
                             </div>
                         </Button>
                         <div className="md:block hidden my-8 text-[14px] text-gray-400 tracking-wide ">
@@ -131,7 +135,7 @@ function Sidebar() {
                                 <a href="#">Contact</a>
                                 <a href="#">Careers</a>
                             </div>
-                            <h4 >Program</h4>
+                            <h4>Program</h4>
                             <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400  gap-4 hover:children:underline leading-5">
                                 <a href="#">Tiktok for Good</a>
                                 <a href="#">Advertise</a>
@@ -141,7 +145,7 @@ function Sidebar() {
                                 <a href="#">Tiktok Rewards</a>
                                 <a href="#">Tiktok Embeds</a>
                             </div>
-                            <h4 >Terms & Policies</h4>
+                            <h4>Terms & Policies</h4>
                             <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400  gap-4 hover:children:underline leading-5">
                                 <a href="#">Help</a>
                                 <a href="#">Sadety</a>
@@ -151,7 +155,7 @@ function Sidebar() {
                                 <a href="#">Creator Academy</a>
                                 <a href="#">Community Guidelines</a>
                             </div>
-                            <h4 >Program</h4>
+                            <h4>Program</h4>
                             <div className="pb-4 flex flex-wrap justify-start items-center text-[11px] children:text-gray-400  gap-4 hover:children:underline leading-5">
                                 <a href="#">Dance</a>
                                 <a href="#">Arts</a>
@@ -163,11 +167,12 @@ function Sidebar() {
                                 <a href="#">Athletics</a>
                                 <a href="#">Hobbies</a>
                             </div>
-                            <span className='text-gray-400 text-[11px] font-sans'>© 2024 TikTok</span>
+                            <span className="text-gray-400 text-[11px] font-sans">© 2024 TikTok</span>
                         </div>
                     </div>
                 </div>
             </div>
+            <Login isShowing={isShowing} hideModal={hideModal} />
         </div>
     );
 }
