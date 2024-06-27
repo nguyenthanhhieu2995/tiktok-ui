@@ -7,7 +7,9 @@ function DefaultLayout({ children }: PropsWithChildren) {
         <div>
             <Header />
             <div className="container">
-                <div className="content">{<Outlet />}</div>
+                <div className="pt-[60px]">
+                    <Outlet />
+                </div>
             </div>
         </div>
     );

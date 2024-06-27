@@ -1,13 +1,12 @@
 import { DefaultLayout, HeaderOnly } from '~/components/Layout';
 
 import { Foryou, Friends, Following, Upload, NotFound, Live, Profile, Messages, Explore, Setting } from '~/pages';
-
+import ErrorNotFound from '~/pages/ErrorNotFound';
 
 const publicRoutes = [
     {
         path: '/',
         element: <DefaultLayout />,
-        errorElement: <NotFound />,
         children: [
             {
                 index: true,
@@ -30,7 +29,7 @@ const publicRoutes = [
                 element: <Live />,
             },
             {
-                path: '/profile',
+                path: '/:username',
                 element: <Profile />,
             },
         ],
@@ -46,7 +45,17 @@ const publicRoutes = [
     {
         path: '/',
         element: <HeaderOnly />,
-        children: [{ path: '/setting', element: <Setting /> }],
+        children: [
+            { path: '/setting', element: <Setting /> },
+            {
+                path: '/404',
+                element: <ErrorNotFound />,
+            },
+        ],
+    },
+    {
+        path: '*',
+        element: <NotFound />,
     },
 ];
 

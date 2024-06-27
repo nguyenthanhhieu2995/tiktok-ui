@@ -18,9 +18,9 @@ function Header() {
     return (
         <header className=" bg-white border-gray-200 border-b-[1.5px] h-[60px] mx-auto px-8 w-full flex flex-row justify-between items-center fixed">
             <div className="min-w-[300px]">
-                <a href="#">
-                    <Logo />
-                </a>
+                
+                    <Logo onClick={() => window.location.assign('/')} />
+                
             </div>
             {/* Search */}
             <div className="relative w-[500px] min-w-48 hidden md:block px-2">

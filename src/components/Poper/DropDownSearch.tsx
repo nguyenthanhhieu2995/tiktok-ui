@@ -1,13 +1,29 @@
 import AccountItem from '~/components/AccountItem';
-import { messi, ronaldo, klopp, sontung } from '~/assets/images/avatarSearch';
-function DropDownSearch() {
+import { cn } from '~/utils/cn';
+
+interface DropDownSearchProps {
+    searchResult: object[];
+    className?: string;
+}
+
+function DropDownSearch({ className, searchResult }: DropDownSearchProps) {
     return (
-        <div className="bg-white w-full absolute left-0 z-50 rounded-xl  mt-2 pt-2 [box-shadow:rgba(0,_0,_0,_0.12)_0px_2px_12px]">
+        <div
+            className={cn(
+                'bg-white w-full absolute left-0 z-50 rounded-xl  mt-2 pt-2 [box-shadow:rgba(0,_0,_0,_0.12)_0px_2px_12px]',
+                className,
+            )}
+        >
             <p className="text-gray-500 px-3 py-4 font-display text-2xl">Accounts</p>
-            <AccountItem image={messi} name={'Messi'} username={'@messi'} />
-            <AccountItem image={ronaldo} name={'Ronaldo'} username={'@ronaldo'} />
-            <AccountItem image={klopp} name={'Klopp'} username={'@klopp'} />
-            <AccountItem image={sontung} name={'Sontung'} username={'@sontung'} />
+            {searchResult.map((item: any) => (
+                <AccountItem
+                    key={item.id}
+                    image={item.avatar}
+                    name={item.full_name}
+                    username={item.nickname}
+                    tick={item.tick}
+                />
+            ))}
         </div>
     );
 }
