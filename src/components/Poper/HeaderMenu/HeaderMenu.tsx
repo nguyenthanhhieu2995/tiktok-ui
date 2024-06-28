@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
-import { useStore } from '~/store';
+import { useStore, useModal } from '~/hooks';
 import { actions } from '~/state';
 
 import {
@@ -19,7 +19,7 @@ import HeaderMenuListItem from './HeaderMenuListItem';
 import HeaderTitle from './HeaderTitle';
 import Wrapper from '../Wrapper';
 import ModalKeyBoardShorcuts from '~/components/Modal/ModalKeyBoardShorcuts';
-import { useModal } from '~/store';
+
 const MENU_ITEMS = [
     {
         icon: <Profile />,

@@ -1,8 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
-import { useStore } from '~/store';
-import { actions } from '~/state';
-import { useModal } from '~/store';
+import { useStore, useModal } from '~/hooks';
+
 import Login from '~/components/Modal/Login';
 import Button from '~/components/Button';
 import Image from '~/components/Image';

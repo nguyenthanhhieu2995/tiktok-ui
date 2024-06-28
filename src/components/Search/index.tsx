@@ -1,5 +1,5 @@
 import { useState, useRef} from 'react';
-import { useGetUsers } from '~/store';
+import { useGetUsers,useDebounce } from '~/hooks';
 
 import { DropDownSearch } from '../Poper';
 import { Spinner, SearchIcon, CancelSearch } from '~/assets/svgs';
@@ -8,17 +8,21 @@ function Search() {
     const inputRef = useRef<HTMLInputElement>(null);
     const [showResult, setShowResult] = useState(true);
     const [inputSearch, setInputSearch] = useState('');
-    const { UsersResult, setUsersResult, isLoading } = useGetUsers(inputSearch);
-    let hideDropDown = '';
+    const  [hideDropDown,setHideDropDown] = useState('');
+
+    const debounced = useDebounce(inputSearch, 500);
+    const { UsersResult, setUsersResult, isLoading } = useGetUsers(debounced);
+
     const handleChangeInput = (e: any) => {
         e = e.trimStart();
         setInputSearch(e);
     };
 
     const handleOnBlur = () => {
-        hideDropDown = 'opacity-0';
+        setHideDropDown('opacity-0');
         setTimeout(() => {
             setShowResult(false);
+            setHideDropDown('');
         },250);
     };
 

@@ -1,8 +1,8 @@
-import { PropsWithChildren } from 'react';
+
 import { Outlet } from 'react-router-dom';
 import Header from '~/components/Layout/components/Header';
 
-function DefaultLayout({ children }: PropsWithChildren) {
+function HeaderOnly() {
     return (
         <div>
             <Header />
@@ -15,4 +15,4 @@ function DefaultLayout({ children }: PropsWithChildren) {
     );
 }
 
-export default DefaultLayout;
+export default HeaderOnly;

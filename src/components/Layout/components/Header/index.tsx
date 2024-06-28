@@ -5,7 +5,7 @@ import 'tippy.js/dist/tippy.css';
 import { Upload, Ellipsis, Messages, Inbox, Logo } from '~/assets/svgs';
 
 import { avatar } from '~/assets/images';
-import { useStore, useModal } from '~/store';
+import { useStore, useModal } from '~/hooks';
 import Button from '~/components/Button';
 import { PoperHeaderMoreMenu } from '~/components/Poper';
 import Login from '~/components/Modal/Login';

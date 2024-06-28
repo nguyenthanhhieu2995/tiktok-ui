@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { Cancel, QrCode, Profile, Facebook, Google, Twitter, Line, KakaoTalk, Apple } from '~/assets/svgs';
 import Button from '../Button';
-import { useStore } from '~/store';
+import { useStore } from '~/hooks';
 import { actions } from '~/state';
 
 const MENU_LOGIN = [

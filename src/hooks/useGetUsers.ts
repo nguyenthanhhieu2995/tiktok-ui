@@ -1,24 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useContext } from 'react';
-import { StoreContext } from '.';
 import { getSearchUser as getSearchUserAPI } from '~/apis/user';
-
-export const useStore = () => useContext(StoreContext);
-
-export const useModal = () => {
-    const [isShowing, setIsShowing] = useState(false);
-    const showModal = () => {
-        setIsShowing(true);
-    };
-    const hideModal = () => {
-        setIsShowing(false);
-    };
-    return {
-        isShowing,
-        showModal,
-        hideModal,
-    };
-};
 
 export const useGetUsers = (inputSearch: string) => {
     const [UsersResult, setUsersResult] = useState([]);
