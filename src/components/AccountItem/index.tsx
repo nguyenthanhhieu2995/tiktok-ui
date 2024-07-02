@@ -10,22 +10,20 @@ interface AccountItemProps {
 }
 function AccountItem({ image, name, username, tick }: AccountItemProps) {
     return (
-        <Link to={`/@${username}`} className="px-6 my-3 cursor-pointer font-displaysemibold flex items-center hover:bg-gray-100 group">
-            <div className="rounded-full size-[40px] overflow-hidden inline-block mr-6 relative ">
+        <Link to={`/@${username}`} className="px-4 py-2 cursor-pointer flex items-center hover:bg-gray-100 group">
+            <div className="rounded-full size-10 overflow-hidden inline-block mr-4 relative ">
                 <Image className="w-full h-full object-cover" src={image} alt={name} />
             </div>
-            <div className="shrink-1 w-full">
-                <div>
-                    <div className="flex gap-2 items-center">
-                        <h4 className="overflow-ellipsis overflow-hidden font-medium ">{name}</h4>
-                        {tick && (
-                            <span className="mb-3">
-                                <Checked />
-                            </span>
-                        )}
-                    </div>
-                    <p className="text-gray-400 leading-5 font-sans ">{username}</p>
+            <div className="shrink-1 w-full leading-5">
+                <div className="flex gap-2 items-center">
+                    <p className="overflow-ellipsis overflow-hidden font-displaysemibol">{name}</p>
+                    {tick && (
+                        <span className="mb-3">
+                            <Checked />
+                        </span>
+                    )}
                 </div>
+                <p className="text-gray-400 font-sans ">{username}</p>
             </div>
         </Link>
     );

@@ -9,3 +9,6 @@ export {default as NotFound} from './NotFound';
 export {default as Profile} from './Profile';
 export {default as Messages} from './Messages';
 export {default as Setting} from './Setting';
+export {default as ErrorNotFound} from './ErrorNotFound';
+export {default as Feedback} from './Feedback';
+export {default as GetCoin} from './GetCoin'

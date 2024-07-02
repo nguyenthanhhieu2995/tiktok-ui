@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HeadlessTippy from '@tippyjs/react/headless';
+
 import { useStore, useModal } from '~/hooks';
 import { actions } from '~/state';
-
+import routesConfig from '~/config/routes';
 import {
     LiveCreatorHub,
     Language,
@@ -13,12 +15,14 @@ import {
     Favorites,
     Settings,
     Logout,
+    Coin,
 } from '~/assets/svgs';
 import { ToggleButton } from '~/components/Poper';
 import HeaderMenuListItem from './HeaderMenuListItem';
 import HeaderTitle from './HeaderTitle';
-import Wrapper from '../Wrapper';
+import Wrapper from '~/components/Poper/Wrapper';
 import ModalKeyBoardShorcuts from '~/components/Modal/ModalKeyBoardShorcuts';
+
 
 const MENU_ITEMS = [
     {
@@ -32,14 +36,19 @@ const MENU_ITEMS = [
         requireLogin: true,
     },
     {
+        icon: <Coin />,
+        title: 'Get Coins',
+        requireLogin: true,
+    },
+    {
         icon: <LiveCreatorHub />,
         title: 'LIVE Creator Hub',
-        to: '/live-creator-hub',
+        to: routesConfig.liveCreatorHub,
     },
     {
         icon: <Settings />,
         title: 'Settings',
-        to: '/settings',
+        to: routesConfig.setting,
         requireLogin: true,
     },
     {
@@ -58,16 +67,45 @@ const MENU_ITEMS = [
                     code: 'vi',
                     title: 'Vietnamese',
                 },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Vietnamese',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Vietnamese',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Vietnamese',
+                }
             ],
         },
     },
     {
         icon: <Feedback />,
         title: 'Feedback and help',
-        to: '/feedback',
+        to: routesConfig.feedback,
     },
     {
-        type: 'keyboardShortcut',
         icon: <KeyboardShortcut />,
         title: 'Keyboard shortcuts',
     },
@@ -78,7 +116,6 @@ const MENU_ITEMS = [
     {
         icon: <Logout />,
         title: 'Log out',
-        type: 'Log out',
         requireLogin: true,
     },
 ];
@@ -89,7 +126,8 @@ interface PoperHeaderMoreMenuProps {
 }
 
 function PoperHeaderMoreMenu({ isLogin, children }: PoperHeaderMoreMenuProps) {
-    const [state,dispatch] = useStore();
+    const navigate = useNavigate();
+    const [state, dispatch] = useStore();
     const { isShowing, showModal, hideModal } = useModal();
     const [history, setHistory] = useState([{ data: MENU_ITEMS }]);
     const current = history[history.length - 1];
@@ -100,18 +138,22 @@ function PoperHeaderMoreMenu({ isLogin, children }: PoperHeaderMoreMenuProps) {
     };
 
     const onChange = (item: any) => {
-        switch (item.type) {
-            case 'language':
-                console.log(item);
-                // write logic language here
-                break;
-            case 'keyboardShortcut':
+        if (item.type === 'language') {
+            // write logic language here
+        }
+        switch (item.title) {
+            case 'Keyboard shortcuts':
                 showModal();
-                console.log();
                 break;
             case 'Log out':
                 console.log('log out');
                 dispatch(actions.logOut());
+                break;
+            case 'Feedback and help':
+                navigate(routesConfig.feedback);
+                break;
+            case 'Get Coins':
+                navigate(routesConfig.getCoin);
                 break;
             default:
                 break;
@@ -121,7 +163,7 @@ function PoperHeaderMoreMenu({ isLogin, children }: PoperHeaderMoreMenuProps) {
     const renderItems = () => {
         return current.data
             .filter((item) => isLogin || !item.requireLogin)
-            .map((item) => {
+            .map((item, index) => {
                 const isParent = !!item.children;
                 const handleClickMenuItem = (item: any) => {
                     if (isParent) {
@@ -134,7 +176,7 @@ function PoperHeaderMoreMenu({ isLogin, children }: PoperHeaderMoreMenuProps) {
                 };
 
                 return (
-                    <li key={item.title} className={`${item.title === 'Log out' ? 'border-t' : ''}`}>
+                    <li key={index} className={`flex items-center  hover:bg-gray-100 ${item.title === 'Log out' ? 'border-t' : ''}`}>
                         <HeaderMenuListItem
                             isSubMenu={isSubMenu}
                             data={item}
@@ -148,20 +190,20 @@ function PoperHeaderMoreMenu({ isLogin, children }: PoperHeaderMoreMenuProps) {
     return (
         <>
             <HeadlessTippy
-                delay={[0, 500]}
+                delay={[0, 600]}
                 interactive
-                offset={[10, 0]}
-                placement="bottom-start"
+                offset={[20, 0]}
+                placement="bottom-end"
                 render={(attrs) => (
                     <div
-                        className="min-w-[224px] font-display leading-6"
+                        className="min-w-[224px] overflow-y-auto h-[550px]"
                         id="tooltip"
                         role="tooltip"
                         tabIndex={-1}
                         {...attrs}
                     >
                         <Wrapper>
-                            <ul className="children:flex children:justify-between children:px-7 children:items-center hover:children:bg-gray-100">
+                            <ul className="children:flex children:justify-between children:px-3">
                                 {isSubMenu && <HeaderTitle title="Language" onBack={handleBack}></HeaderTitle>}
                                 {renderItems()}
                             </ul>

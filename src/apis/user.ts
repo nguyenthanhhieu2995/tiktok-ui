@@ -1,9 +1,13 @@
-import { configs } from '~/config/env';
+import  request from '~/utils/request';
 
-export const getSearchUser = async (inputSearch:string) => {
-    const res = await fetch(
-        `${configs.API_URL}users/search?q=${encodeURIComponent(inputSearch)}&type=less`,
-    );
-    const json = await res.json();
-    return json;
+const getSearchUser = async (inputSearch: string, type = 'less') => {
+    const res = await request.get('users/search', {
+        params: {
+            q: inputSearch,
+            type,
+        },
+    });
+    return res.data
 };
+
+export { getSearchUser };

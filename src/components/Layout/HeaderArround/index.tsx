@@ -2,11 +2,11 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../components/header';
 
-function HeaderOnly() {
+function HeaderArround() {
     return (
-        <div>
-            <Header />
-            <div className="container">
+        <div >
+            <Header center/>
+            <div className="container px-40">
                 <div className="pt-[60px]">
                     <Outlet />
                 </div>
@@ -15,4 +15,4 @@ function HeaderOnly() {
     );
 }
 
-export default HeaderOnly;
+export default HeaderArround;

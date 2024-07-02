@@ -10,11 +10,11 @@ function DropDownSearch({ className, searchResult }: DropDownSearchProps) {
     return (
         <div
             className={cn(
-                'bg-white w-full absolute left-0 z-50 rounded-xl  mt-2 pt-2 [box-shadow:rgba(0,_0,_0,_0.12)_0px_2px_12px]',
+                'bg-white w-full absolute left-0 z-50 rounded-lg mt-2 text-sm [box-shadow:rgba(0,_0,_0,_0.12)_0px_2px_12px]',
                 className,
             )}
         >
-            <p className="text-gray-500 px-3 py-4 font-display text-2xl">Accounts</p>
+            <p className="text-gray-500 px-3 py-3 font-display">Accounts</p>
             {searchResult.map((item: any) => (
                 <AccountItem
                     key={item.id}

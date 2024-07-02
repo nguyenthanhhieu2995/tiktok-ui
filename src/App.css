@@ -4,20 +4,9 @@
 @tailwind utilities;
 
 @layer base {
-    html {
-        font-size: 62.5%;
-    }
     body {
-        line-height: 1.5;
-        font-size: 1.6rem;
         text-rendering: optimizeSpeed;
-    }
-    h1 {
-        @apply text-5xl leading-[1.7];
-    }
-    h4 {
-        @apply leading-loose;
-        font-family: 'TikTokDisplay-Semibold';
+        overflow-y: overlay;
     }
 
     * {
@@ -70,7 +59,7 @@
         right: 4px;
     }
     #sidebar::-webkit-scrollbar {
-        display: none;
+        background-color: transparent;
     }
 }
 

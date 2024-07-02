@@ -1,11 +1,25 @@
-import { DefaultLayout, HeaderOnly } from '~/components/Layout';
+import { DefaultLayout, HeaderOnly, HeaderArround } from '~/components/Layout';
+import {
+    Foryou,
+    Friends,
+    Following,
+    Upload,
+    NotFound,
+    Live,
+    Profile,
+    Messages,
+    Explore,
+    Setting,
+    ErrorNotFound,
+    Feedback,
+    GetCoin
+} from '~/pages';
+import routesConfig from '~/config/routes';
 
-import { Foryou, Friends, Following, Upload, NotFound, Live, Profile, Messages, Explore, Setting } from '~/pages';
-import ErrorNotFound from '~/pages/ErrorNotFound';
 
 const publicRoutes = [
     {
-        path: '/',
+        path: routesConfig.root,
         element: <DefaultLayout />,
         children: [
             {
@@ -13,48 +27,65 @@ const publicRoutes = [
                 element: <Foryou />,
             },
             {
-                path: '/following',
+                path: routesConfig.following,
                 element: <Following />,
             },
             {
-                path: '/friends',
+                path: routesConfig.friends,
                 element: <Friends />,
             },
             {
-                path: '/explore',
+                path: routesConfig.explore,
                 element: <Explore />,
             },
             {
-                path: '/live',
+                path: routesConfig.live,
                 element: <Live />,
             },
             {
-                path: '/:username',
+                path: routesConfig.profile,
                 element: <Profile />,
             },
         ],
     },
     {
-        path: '/upload',
+        path: routesConfig.upload,
         element: <Upload />,
     },
     {
-        path: '/messages',
-        element: <Messages />,
-    },
-    {
-        path: '/',
-        element: <HeaderOnly />,
+        path: routesConfig.root,
+        element: <HeaderOnly  />,
         children: [
-            { path: '/setting', element: <Setting /> },
             {
-                path: '/404',
+                path: routesConfig.setting,
+                element: <Setting />,
+            },
+            {
+                path: routesConfig.messages,
+                element: <Messages />,
+            },
+            {
+                path: routesConfig.error,
                 element: <ErrorNotFound />,
             },
         ],
     },
     {
-        path: '*',
+        path: routesConfig.root,
+        element:<HeaderArround  />,
+        children: [
+            {
+                path: routesConfig.feedback,
+                element: <Feedback />,
+            },
+            {
+                path: routesConfig.getCoin,
+                element: <GetCoin />,
+            }
+        ]
+    },
+    {
+        path: routesConfig.notFound,
         element: <NotFound />,
     },
 ];

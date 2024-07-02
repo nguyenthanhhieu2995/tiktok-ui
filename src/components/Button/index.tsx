@@ -34,7 +34,7 @@ function Button({ to, href, style, disabled, noDefaultStyle, children, onClick, 
     return (
         <Comp
             className={cn(
-                noDefaultStyle ? '' : 'rounded-lg min-h-[36px] min-w-[100px] flex justify-center items-center cursor-pointer px-4 py-[8px] ml-6 leading-5',
+                noDefaultStyle ? '' : 'rounded min-h-9 min-w-28 flex justify-center items-center cursor-pointer px-4 py-2 ml-4 leading-5',
                 style ? style : 'text-button', disabled ? 'pointer-events-none opacity-70 select-none' : ''
             )}
             {...props}
